@@ -4,7 +4,7 @@
 
 ## 源代码
 
-- 需要访问[源代码](www.example.com/coolcereals)
+- 需要访问[源代码](https://github.com/chanyhot/ArcadeGame)
 
 ## 如何运行
 

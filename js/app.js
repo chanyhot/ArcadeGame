@@ -35,7 +35,7 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed * dt;
     // 敌人超出屏幕
     if (this.x >= 606) {
-        // 重制敌人
+        // 重置敌人
         this.x = -101;
         var array = util.randomEnemyParm();
         this.y = array[0];
@@ -77,6 +77,10 @@ Player.prototype.handleInput = function(direction) {
         case 'up':
             if (this.y - 83 >= 0) {
                 this.y = this.y - 83;
+            } else {
+                // 赢得游戏，重置位置
+                this.x = 202;
+                this.y = 390;
             }
             break;
         case 'right':

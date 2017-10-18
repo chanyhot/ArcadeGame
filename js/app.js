@@ -1,3 +1,4 @@
+'strict mode'
 // 工具库对象
 var util = {
     // 随机生成敌人参数
@@ -13,6 +14,10 @@ var util = {
         return [yLoc[numForY], numForSpeed];
     }
 }
+
+//常量
+var TILE_WIDTH = 101,
+    TILE_HEIGHT = 83;
 
 // 这是我们的玩家要躲避的敌人
 var Enemy = function(x, y, speed) {
@@ -36,7 +41,7 @@ Enemy.prototype.update = function(dt) {
     // 敌人超出屏幕
     if (this.x >= 606) {
         // 重置敌人
-        this.x = -101;
+        this.x = -TILE_WIDTH;
         var array = util.randomEnemyParm();
         this.y = array[0];
         this.speed = array[1];
@@ -70,27 +75,33 @@ Player.prototype.handleInput = function(direction) {
     // 移动玩家角色
     switch(direction) {
         case 'left':
-            if (this.x - 101 >= 0) {
-                this.x = this.x - 101;
+            if (this.x - TILE_WIDTH >= 0) {
+                this.x -= TILE_WIDTH;
             }
             break;
         case 'up':
-            if (this.y - 83 >= 0) {
-                this.y = this.y - 83;
+            if (this.y - TILE_HEIGHT >= 0) {
+                this.y -= TILE_HEIGHT;
             } else {
                 // 赢得游戏，重置位置
+                ctx.font = '30px Courier New';
+                ctx.fillStyle = 'red';
+                ctx.fillText('YOU WIN!', 190, 30);
+                setTimeout(function() {
+                    ctx.clearRect(190,0,150,35);
+                }, 2000)
                 this.x = 202;
                 this.y = 390;
             }
             break;
         case 'right':
-            if (this.x + 101 <= 404) {
-                this.x = this.x + 101;
+            if (this.x + TILE_WIDTH <= 404) {
+                this.x += TILE_WIDTH;
             }
             break;
         case 'down':
-            if (this.y + 83 <= 390) {
-                this.y = this.y + 83;
+            if (this.y + TILE_HEIGHT <= 390) {
+                this.y += TILE_HEIGHT;
             }
             break;
     }
@@ -101,7 +112,7 @@ Player.prototype.handleInput = function(direction) {
 var allEnemies = [];
 for (var i = 0; i < 5; i++) {
     var array = util.randomEnemyParm();
-    allEnemies.push(new Enemy(-101, array[0], array[1]));
+    allEnemies.push(new Enemy(-TILE_WIDTH, array[0], array[1]));
 }
 
 // 把玩家对象放进一个叫 player 的变量里面

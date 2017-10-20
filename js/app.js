@@ -15,6 +15,7 @@ var util = {
     }
 }
 var test1 = 1; //just want test arc
+var test1 = 1; //just want test arc
 
 //常量
 var TILE_WIDTH = 101,

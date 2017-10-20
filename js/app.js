@@ -14,6 +14,7 @@ var util = {
         return [yLoc[numForY], numForSpeed];
     }
 }
+var test1 = 1; //just want test arc
 
 //常量
 var TILE_WIDTH = 101,
